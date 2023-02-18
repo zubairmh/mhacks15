@@ -11,8 +11,8 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Navbar/>
-      <main>
+      <main className="flex flex-row min-h-screen max-h-screen overflow-hidden">
+        <Navbar/>
         <Hero/>
       </main>
     </>

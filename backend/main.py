@@ -86,7 +86,6 @@ def patients(request: Request):
 def patient(patient_id: str, request:Request):
     if not bson.objectid.ObjectId.is_valid(patient_id): return None
     patient=request.app.database["Patients"].find_one({"_id":ObjectId(patient_id)})
-    print(patient)
     return patient
 
 @app.get("/api/medicine", response_description="Get a list of medicines", response_model=list[Medicine])
@@ -99,9 +98,8 @@ def medicines(request: Request):
 def medicine(medicine_id: str, request:Request):
     if not bson.objectid.ObjectId.is_valid(medicine_id): return None
     medicine=request.app.database["Medicines"].find_one({"_id":ObjectId(medicine_id)})
-    print(medicine)
     return medicine
 
-@ app.get("/items/{item_id}")
+@app.get("/items/{item_id}")
 def read_item(item_id: int, q: Union[str, None] = None):
     return {"item_id": item_id, "q": q}
