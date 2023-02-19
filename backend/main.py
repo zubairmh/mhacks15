@@ -1,5 +1,6 @@
 from typing import Union
 from fastapi import FastAPI, Request
+from fastapi.middleware.cors import CORSMiddleware
 import uuid
 import bson
 from bson import ObjectId
@@ -7,7 +8,6 @@ from pydantic import Field, BaseModel
 from pymongo import MongoClient
 from dotenv import dotenv_values
 from bson.objectid import ObjectId as BsonObjectId
-
 
 class PydanticObjectId(BsonObjectId):
     @classmethod
@@ -60,13 +60,31 @@ class Medicine(BaseModel):
             }
         }
 
+class Consultation(BaseModel):
+    id: PydanticObjectId = Field(default_factory=uuid.uuid4, alias="_id")
+    name: str = Field(...)
+    expiry: int = Field(...)
+    quantity: int = Field(...)
 
+    class Config:
+        schema_extra = {
+            "example": {
+                "_id": "066de609-b04a-4b30-b46c-32537c7f1f6e",
+                "name": "Paracetamol",
+                "expiry": 1686715017,
+                "quantity": 7
+            }
+        }
 app = FastAPI()
-
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"]
+)
 
 @app.on_event("startup")
 def startup_db_client():
-    app.mongodb_client = MongoClient(config["MONGO_URI"])
+    app.mongodb_client=MongoClient("localhost", 27017)
+    # app.mongodb_client = MongoClient(config["MONGO_URI"])
     app.database = app.mongodb_client[config["DB_NAME"]]
     print("Connected to the MongoDB database!")
 

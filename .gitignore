@@ -22,6 +22,7 @@
 # backend
 poetry.lock
 .env
+*.pyc
 
 # debug
 npm-debug.log*
