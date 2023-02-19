@@ -4,6 +4,8 @@ import Patient from "@/components/cardPatient";
 type Patient = {
   _id: string;
   name: string;
+  card: string[];
+  remove: (c: string)=>void;
   enrolled_on: number;
   age: number;
   doctor: string;
@@ -27,6 +29,13 @@ export default function Home(props: HomeProps) {
       // this now gets called when the component unmounts
     };
   }, []);
+  function removeCard(key: string) {
+    setcardState(cardState.filter((el: Patient) => el._id !== key));
+
+    fetch(`http://localhost:8000/api/delete/${key}`)
+        .then(response => response.json())
+
+  }
   return (
     <>
       <div className="rounded-9xl overflow-y-auto">
@@ -47,7 +56,9 @@ export default function Home(props: HomeProps) {
             .map((patient: Patient) => {
               return (
                 <Patient
-                  key={patient._id}
+                  _id={patient._id}
+                  card={cardState}
+                  remove={removeCard}
                   records={patient.records}
                   name={patient.name}
                   age={patient.age}

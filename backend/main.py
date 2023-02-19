@@ -100,10 +100,12 @@ def patients(request: Request):
     return patients
 
 
-@app.get("/api/patient/{patient_id}", response_description="Get a patient by id", response_model=Patient | None)
+@app.get("/api/delete/{patient_id}", response_description="Remove a patient's information", response_model=Patient | None)
 def patient(patient_id: str, request:Request):
     if not bson.objectid.ObjectId.is_valid(patient_id): return None
     patient=request.app.database["Patients"].find_one({"_id":ObjectId(patient_id)})
+    if patient:
+        request.app.database["Patients"].delete_one({"_id":ObjectId(patient_id)})
     return patient
 
 @app.get("/api/medicine", response_description="Get a list of medicines", response_model=list[Medicine])

@@ -22,7 +22,10 @@ Modal.setAppElement("#root");
 const title = Arimo({ weight: "700", subsets: ["latin"] });
 const buttontitle = Josefin_Sans({ weight: "400", subsets: ["latin"] });
 type CardProps = {
+  _id: string;
   name: string;
+  card: string[];
+  remove: (c:string)=>void;
   age: number;
   on: number;
   doctor: string;
@@ -96,7 +99,7 @@ const Patient = (props: CardProps) => {
                 <MdEdit /> <span className={buttontitle.className}>Edit</span>
               </div>
             </button>
-            <button className="rounded-sm bg-red-700 text-white py-1.5 hover:bg-rose-600 px-5">
+            <button onClick={()=>props.remove(props._id)} className="rounded-sm bg-red-700 text-white py-1.5 hover:bg-rose-600 px-5">
               <div className="flex flex-row justify-between items-center space-x-2">
                 <MdPersonRemove />{" "}
                 <span className={buttontitle.className}>Remove</span>
