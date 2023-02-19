@@ -14,8 +14,8 @@ const Medicine = (props: CardProps) => {
         <h1 className={`text-3xl ${title.className}`}>{props.name}</h1>
         <div className="m-5" />
         <div className="flex flex-row space-x-3">
-          <span className="rounded font-semibold dark:bg-green-500 py-1 px-2">Expires on {new Date(props.on * 1000).toDateString()}</span>
-          <span className="rounded font-semibold dark:bg-purple-500 py-1 px-2">Quantity: {props.quantity}</span>
+          <span className="rounded font-semibold bg-green-500 py-1 px-2">Expires on {new Date(props.on * 1000).toDateString()}</span>
+          <span className="rounded font-semibold bg-purple-500 py-1 px-2">Quantity: {props.quantity}</span>
           
           <div className="grow" />
           <div className="flex flex-row space-x-3">

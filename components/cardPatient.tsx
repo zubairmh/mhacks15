@@ -69,13 +69,13 @@ const Patient = (props: CardProps) => {
         <h1 className={`text-3xl ${title.className}`}>{props.name}</h1>
         <div className="m-5" />
         <div className="flex flex-row space-x-3">
-          <span className="rounded font-semibold dark:bg-green-500 py-1 px-2">
+          <span className="rounded font-semibold bg-green-500 py-1 px-2">
             Enrolled on {new Date(props.on * 1000).toDateString()}
           </span>
-          <span className="rounded font-semibold dark:bg-amber-500 py-1 px-2">
+          <span className="rounded font-semibold bg-amber-500 py-1 px-2">
             Age {props.age}
           </span>
-          <span className="rounded font-semibold dark:bg-purple-500 py-1 px-2">
+          <span className="rounded font-semibold bg-purple-500 py-1 px-2">
             Doctor {props.doctor}
           </span>
 

@@ -22,9 +22,9 @@ export default function Layout({
       </Head>
       <main className="flex flex-row min-h-screen max-h-screen overflow-hidden">
         <Navbar />
-        <div className="bg-white dark:text-white dark:bg-sexyblack grow flex flex-col flex-1">
+        <div className="text-white bg-sexyblack grow flex flex-col flex-1">
           <div className="max-w-full bg-sexygray h-16 max-h-16">
-            <div className="p-4 flex flex-row justify-between text-center">
+            <div className="p-4 flex flex-row justify-end text-center">
               <div>
                 <input
                   type="search"
@@ -36,9 +36,6 @@ export default function Layout({
                   aria-describedby="button-addon2"
                 ></input>
               </div>
-              <button className="bg-zinc-800 rounded-full px-4 py-1">
-                <MdSortByAlpha className="h-6 w-6 text-white" />
-              </button>
             </div>
           </div>
           {children}
